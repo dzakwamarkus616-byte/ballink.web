@@ -1,83 +1,293 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BALLLINK</title>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BALLLINK</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#050510;color:white;padding-bottom:80px}
-.header{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;background:#0a0a1a}
-.logo{display:flex;gap:10px;align-items:center}
-.logo-b{background:white;color:black;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:20px}
-.search{background:#121228;margin:12px;border-radius:14px;padding:12px 15px;display:flex;gap:10px;color:gray}
-.search input{background:transparent;border:none;color:white;width:100%;outline:none}
-.post{background:#101026;margin:12px;border-radius:20px;padding:14px}
-.post-top{display:flex;gap:10px;align-items:center}
-.avatar{width:50px;height:50px;border-radius:14px;background:#1e1e3a;display:flex;align-items:center;justify-content:center;font-weight:bold;overflow:hidden}
-.badge{background:#00ff88;color:black;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:bold}
-.stats{display:flex;justify-content:space-between;margin:14px 0;text-align:center}
-.stats b{font-size:18px}
-.stats small{color:gray;font-size:10px}
-.media{width:100%;height:190px;background:#111;border-radius:14px;position:relative;overflow:hidden}
-.media img{width:100%;height:100%;object-fit:cover}
-.play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#00ff88;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:black}
-.btns{display:flex;gap:10px;margin-top:12px}
-.btn{flex:1;padding:12px;border-radius:12px;border:none}
-.btn-like{background:#00ff88;color:black;font-weight:bold}
-.btn-cmt{background:#1a1a2e;color:white}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#0a0a1a;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #1a1a2e;z-index:100}
-.nav{color:gray;text-align:center;font-size:11px}.nav.active{color:#00ff88}
-.page{display:none}.page.show{display:block}
-.fab{position:fixed;bottom:85px;right:15px;background:#00ff88;width:55px;height:55px;border-radius:18px;display:flex;align-items:center;justify-content:center;color:black;font-size:24px;font-weight:bold}
-.profile-card{background:#101026;margin:12px;border-radius:20px;padding:20px;text-align:center}
-.stat3{background:#0f0f25;padding:12px;border-radius:16px;flex:1;text-align:center}
-</style></head><body>
-
-<div id="feedPage" class="page show">
-<div class="header"><div class="logo"><div class="logo-b">B</div><div><b>BALLLINK</b><br><small style="color:gray;font-size:10px">GLOBAL FOOTBALL NETWORK</small></div></div><div style="display:flex;gap:8px"><div style="background:#1a1a2e;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center">🔔</div><div style="background:#1a1a2e;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center">🌙</div></div></div>
-<div class="search">🔍 <input placeholder="Search players, clubs, position, country.."></div>
-
-<div class="post">
-<div style="color:gray;font-size:11px;margin-bottom:8px">POST • 9/29/2026</div>
-<div class="post-top"><div class="avatar"><img src="https://i.pravatar.cc/100?img=5" style="width:100%"></div><div><b>Markus dzakwa ✅</b><br><span class="badge">Striker</span> <small style="color:gray">Biba FC</small><br><small><b>Nigeria</b> • Age 21</small></div></div>
-<div class="stats"><div><b>33</b><br><small>GOALS</small></div><div><b>50</b><br><small>APPEARANCES</small></div><div><b>7</b><br><small>ASSISTS</small></div></div>
-<div class="media"><img src="https://images.unsplash.com/photo-1579952363873-27f3bfad9c0d?w=600"><div class="play">▶</div><div style="position:absolute;bottom:8px;left:8px;background:black;padding:4px 8px;border-radius:8px;font-size:11px">VIEW PHOTO</div><div style="position:absolute;top:8px;left:50%;transform:translateX(-50%);background:black;padding:3px 10px;border-radius:12px;font-size:12px">1/25</div></div>
-<div style="display:flex;gap:15px;margin-top:10px;color:gray;font-size:12px"><span>👁️ <b style="color:white">1</b> Scout</span><span>👁️ <b style="color:white">2</b> Player</span></div>
-<div class="btns"><button class="btn btn-like">👍 1</button><button class="btn btn-cmt">💬 Comment</button></div>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#06060A;--card:linear-gradient(180deg,#1C1C2E,#151525);--card2:#151525;--input:#0E0E1A;--border:#232334;--text:#fff;--muted:#8B8B9A}
+body.light{--bg:#F6F6F8;--card:linear-gradient(180deg,#FFFFFF,#FFFFFF);--card2:#FFFFFF;--input:#F0F0F2;--border:#E6E6E8;--text:#111;--muted:#6B7280}
+html,body{overflow-x:hidden;width:100%}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);max-width:500px;margin:0 auto;padding-bottom:110px;position:relative;overflow-x:hidden;transition:.2s}
+.top{position:sticky;top:0;z-index:30;background:rgba(6,6,10,.92);backdrop-filter:blur(22px);padding:10px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.logoWrap{display:flex;gap:10px;align-items:center}.logoMark{width:32px;height:32px;background:#fff;color:#000;display:flex;align-items:center;justify-content:center;font-weight:900;border-radius:8px;font-size:14px}
+.logoText{font-weight:900;font-size:16px;line-height:1}.logoText span{font-size:8px;color:#6B7280;display:block;font-weight:500;margin-top:2px}
+.icons{display:flex;gap:8px;align-items:center}.iconBtn{width:32px;height:32px;background:#1A1A2C;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid var(--border);position:relative}
+.iconBtn svg{width:16px;height:16px;stroke:var(--text);fill:none;stroke-width:2}
+.notifBadge{position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;padding:0 4px;background:#FF3B30;color:#fff;font-size:8px;font-weight:800;border-radius:10px;display:none;align-items:center;justify-content:center;border:2px solid var(--bg);z-index:2}
+.notifBadge.show{display:flex}
+.adminBtn{padding:8px 16px;background:#00E676;color:#000;font-weight:900;font-size:13px;border-radius:20px;cursor:pointer;border:0;box-shadow:0 0 15px rgba(0,230,118,.4);letter-spacing:.5px;display:none;align-items:center;justify-content:center}
+.adminBtn.show{display:flex}
+.searchBar{margin:8px 12px;background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:0 12px;height:38px;display:flex;gap:8px;align-items:center}
+.searchBar svg{width:16px;height:16px;stroke:#6B7280;flex-shrink:0}
+.searchBar input{flex:1;border:0;outline:none;font-size:13px;background:transparent;color:var(--text);font-family:Inter}
+.card{background:var(--card);margin:8px 10px;border-radius:18px;padding:14px;border:1px solid var(--border);box-shadow:0 8px 30px rgba(0,0,0,.5);position:relative;z-index:1}
+.label{font-size:9px;font-weight:700;color:#6B7280;margin-bottom:10px;display:flex;justify-content:space-between}
+.adminDel{display:none;background:#FF3B30;color:#fff;border:0;padding:4px 10px;border-radius:14px;font-size:9px;font-weight:800;cursor:pointer}
+.adminDel.show{display:block}
+.profileRow{display:flex;gap:10px}.avatar{width:54px;height:54px;border-radius:12px;background:#1A1A2C;overflow:hidden;flex-shrink:0;cursor:pointer;border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.avatarInitials{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1A1A2C,#232334);color:#fff;font-weight:900;font-size:18px}
+.name{font-weight:800;font-size:13px;display:flex;gap:4px;align-items:center;cursor:pointer}
+.verified{width:14px;height:14px;background:linear-gradient(135deg,#1D9BF0,#0A84FF);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:900}
+.stats{display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:10px;text-align:center}
+.stat b{font-size:13px;display:block;color:var(--text)}.stat span{font-size:7px;color:#666;font-weight:700;text-transform:uppercase;margin-top:1px;display:block}
+.reel{margin-top:10px;border-radius:12px;overflow:hidden;position:relative;background:var(--input);aspect-ratio:16/10;cursor:pointer;border:1px solid var(--border);display:block}
+.reel img{width:100%;height:100%;object-fit:cover;display:block}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:38px;height:38px;background:#00E676;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:#000;z-index:2}
+.reelLabel{position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,.7);color:#fff;padding:3px 7px;border-radius:10px;font-size:7.5px;font-weight:700;z-index:2}
+.viewsRow{display:flex;gap:10px;padding:8px 2px 0;font-size:8.5px;color:#666;font-weight:600;align-items:center}
+.viewsRow b{color:var(--text)}
+.actionRow{display:flex;gap:6px;margin-top:10px}
+.actionBtn{flex:1;height:32px;border-radius:8px;border:1px solid var(--border);background:#1A1A2C;color:var(--text);font-weight:700;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;font-family:Inter;transition:.2s}
+.actionBtn.active{background:#00E676;color:#000;border-color:#00E676}
+.proContact{width:100%;margin-top:12px;height:46px;background:linear-gradient(135deg,#00E676 0%,#00C853 100%);color:#000;border:0;border-radius:12px;font-weight:900;font-size:13px;letter-spacing:.6px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;box-shadow:0 8px 22px rgba(0,230,118,.38);font-family:Inter;transition:.15s}
+.proContact:active{transform:scale(.98)}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:500px;background:rgba(6,6,10,.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:6px 0 8px;z-index:30}
+.ni{text-align:center;color:#555;font-size:8.5px;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
+.ni.active{color:#00E676;font-weight:700}.ni svg{width:18px;height:18px;stroke-width:1.8}
+.iconWrap{position:relative;display:inline-block}
+.msgBadge{position:absolute;top:-4px;right:-8px;min-width:14px;height:14px;padding:0 4px;background:#00E676;color:#000;font-size:8px;font-weight:800;border-radius:8px;display:none;align-items:center;justify-content:center;border:2px solid var(--bg)}
+.msgBadge.show{display:flex}
+.fab{position:fixed;bottom:78px;right:14px;z-index:40;background:#00E676;color:#000;width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 24px rgba(0,230,118,.4)}
+.fab svg{width:20px;height:20px;stroke:currentColor;stroke-width:2.5}
+.modalOverlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.75);backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:16px}.modalOverlay.show{display:flex}
+.modalCard{background:var(--card2);width:100%;max-width:380px;border-radius:24px;padding:18px;max-height:92vh;overflow:auto;border:1px solid var(--border)}
+.input{width:100%;padding:11px 12px;background:var(--input);border:1.5px solid var(--border);border-radius:10px;margin-bottom:8px;outline:none;color:var(--text);font-family:Inter;font-size:13px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#00E676;color:#000;padding:12px 20px;border-radius:30px;font-size:13px;font-weight:700;z-index:999;display:none;max-width:90%;text-align:center}
+#profileModal{align-items:flex-end;padding:0;background:rgba(0,0,0,.82);z-index:500}
+#profileModal.modalCard{max-width:500px;width:100%;border-radius:24px 24px 0 0;margin:0 auto;max-height:92vh;padding:0;overflow:hidden;background:var(--card2)}
+#imageModal{background:rgba(0,0,0,.92);z-index:700}
+#imageModal.modalCard{max-width:500px;width:100%;background:#000;border-radius:20px;padding:0;overflow:hidden;border:0;position:relative}
+#imageModal img{width:100%;height:auto;max-height:92vh;object-fit:contain;display:block;background:#000}
+#notifModal{z-index:650;background:rgba(0,0,0,.85)}
+#notifModal.modalCard{max-width:420px;padding:0;overflow:hidden;border-radius:20px}
+.notifHeader{padding:16px 16px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.notifList{max-height:70vh;overflow:auto}
+.notifItem{display:flex;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(35,35,52,.6);cursor:pointer}
+.notifItem.unread{background:rgba(0,230,118,.06)}
+.notifIcon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;border:1px solid var(--border)}
+.modalBtn{flex:1;padding:12px;border-radius:10px;font-weight:700;border:0;cursor:pointer;font-family:Inter;font-size:12px}.modalBtnCancel{background:#1A1A2C;color:var(--text);border:1px solid var(--border)}.modalBtnMain{background:#00E676;color:#000}.modalBtnDanger{background:#FF3B30;color:#fff}
+.skeleton{background:linear-gradient(90deg,#151525 25%,#1E1E35 50%,#151525 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;border-radius:10px}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+</style></head>
+<body>
+<div class="top"><div class="logoWrap"><div class="logoMark">B</div><div class="logoText">BALLLINK<span>GLOBAL FOOTBALL NETWORK</span></div></div>
+<div class="icons">
+  <div class="iconBtn" onclick="openNotif()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-6 9-6 9h18s-6-2-6-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg><b id="notifBadge" class="notifBadge">0</b></div>
+  <div class="iconBtn" onclick="toggleTheme()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9c0 5-4 9-9 9s-9-4-9-9 4-9 9-9z"></path></svg></div>
+  <button id="adminBtn" class="adminBtn" onclick="location.href='admin.html'">ADMIN ✓</button>
+</div></div>
+<div class="searchBar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6"></circle><path d="M21 21l-3.5-3.5"></path></svg><input id="search" placeholder="Search players, clubs, position, country..."></div>
+<div id="feed"></div>
+<div class="fab" onclick="openPost()"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14"></path></svg></div>
+<div class="nav">
+  <div class="ni active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 10L12 3l9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>Home</div>
+  <div class="ni" id="scoutNavBtn" style="display:none" onclick="location.href='scout.html'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.2" fill="currentColor"></circle></svg>Scout</div>
+  <div class="ni" onclick="location.href='chat.html'"><span class="iconWrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.5 8.5 0 0 1-12.7 7.4L3 21l2.1-5.3A8.5 8.5 0 1 1 21 11.5z"></path></svg><b id="msgBadge" class="msgBadge">0</b></span>Messages</div>
+  <div class="ni" onclick="location.href='profile.html'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"></circle><path d="M4 20a8 8 0 0 1 16 0"></path></svg>Profile</div>
+  <div class="ni" onclick="doLogout()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1 2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"></path></svg>Logout</div>
 </div>
 
-<div class="post">
-<div style="color:gray;font-size:11px;margin-bottom:8px">POST • 9/29/2026</div>
-<div class="post-top"><div class="avatar">TO</div><div><b>Tomiwa</b><br><span class="badge">Striker</span> <small style="color:gray">Fulham</small><br><small><b>Rwanda</b> • Age 19</small></div></div>
-</div>
-<div class="fab">+</div>
-</div>
-
-<div id="profilePage" class="page">
-<div style="padding:12px;background:#0a0a1a;display:flex;justify-content:space-between"><div onclick="showPage('feedPage')" style="background:#1a1a2e;width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center">←</div><div style="text-align:center"><b>Profile</b><br><small style="color:gray">Your BALLLINK identity</small></div><div style="background:#1a1a2e;width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center">☀️</div></div>
-<div class="profile-card">
-<div style="width:90px;height:90px;background:#1e1e3a;margin:0 auto;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:bold;position:relative">TO<div style="position:absolute;bottom:-5px;right:-5px;background:#00ff88;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:black;font-size:14px">✎</div></div>
-<h2 style="margin-top:12px">Tomiwa olorun ✅</h2><p style="color:gray;margin:4px">Striker • Fulham</p><p style="color:gray">Senegal • Age 19</p>
-<div style="background:#2a7bff;color:white;display:inline-block;padding:6px 14px;border-radius:20px;font-size:12px;margin-top:10px;font-weight:bold">✓ VERIFIED BY ADMIN</div>
-<div style="display:flex;gap:8px;margin-top:15px"><div class="stat3"><b style="font-size:22px">0</b><br><small style="color:gray">GOALS</small></div><div class="stat3"><b style="font-size:22px">0</b><br><small style="color:gray">APPEARANCES</small></div><div class="stat3"><b style="font-size:22px">0</b><br><small style="color:gray">ASSISTS</small></div></div>
-<div style="background:#121228;border-radius:14px;padding:12px;margin-top:12px;text-align:left"><div style="display:flex;justify-content:space-between"><span style="color:gray">Player Potential</span><span style="color:#00ff88;font-weight:bold">80%</span></div><div style="height:8px;background:#222;border-radius:10px;margin-top:8px"><div style="width:80%;height:100%;background:#00ff88;border-radius:10px"></div></div></div>
-<div style="display:flex;gap:10px;margin-top:12px"><button style="flex:1;background:#00ff88;border:none;padding:14px;border-radius:14px;font-weight:bold">Edit Profile</button><button style="flex:1;background:#1a1a2e;color:white;border:none;padding:14px;border-radius:14px;font-weight:bold">My Posts</button></div>
-</div>
-</div>
-
-<div id="msgPage" class="page"><div class="post">💬 Messages - No messages</div></div>
-
-<div class="bottom">
-<div class="nav active" onclick="showPage('feedPage',this)"><div style="font-size:20px">🏠</div>Home</div>
-<div class="nav" onclick="showPage('msgPage',this)"><div style="font-size:20px">💬</div>Messages</div>
-<div class="nav" onclick="showPage('profilePage',this)"><div style="font-size:20px">👤</div>Profile</div>
-<div class="nav" onclick="location.href='login.html'"><div style="font-size:20px">↪️</div>Logout</div>
-</div>
-
-<script>
-function showPage(id,el){
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
-document.getElementById(id).classList.add('show');
-document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));
-if(el) el.classList.add('active');
+<div class="modalOverlay" id="logoutModal" onclick="if(event.target===this) hideLogout()"><div class="modalCard" style="text-align:center"><h3 style="font-weight:800">Logout?</h3><div style="display:flex;gap:10px;margin-top:14px"><button class="modalBtn modalBtnCancel" onclick="hideLogout()">Cancel</button><button class="modalBtn modalBtnMain" onclick="confirmLogout()">Logout</button></div></div></div>
+<div class="modalOverlay" id="notifModal" onclick="if(event.target===this) closeNotif()"><div class="modalCard"><div class="notifHeader"><h3>Notifications</h3><div style="display:flex;gap:8px;align-items:center"><span onclick="markAllRead()" style="font-size:11px;color:#00E676;font-weight:700;cursor:pointer">Mark all read</span><span onclick="closeNotif()" style="cursor:pointer;font-size:18px">✕</span></div></div><div id="notifList" class="notifList"><div style="padding:40px 20px;text-align:center;color:#666;font-size:12px">No notifications yet</div></div></div></div>
+<div class="modalOverlay" id="postModal" onclick="if(event.target===this) closePost()"><div class="modalCard"><h3 style="text-align:center;font-weight:800;margin-bottom:4px">Post Talent</h3><p style="text-align:center;font-size:11px;color:#6B7280;margin-bottom:14px">Photo or YouTube</p><input id="pName" class="input" placeholder="Player Name *" readonly><div class="grid2"><input id="pClub" class="input" placeholder="Club"><input id="pPos" class="input" placeholder="Position"></div><div class="grid2"><input id="pCountry" class="input" placeholder="Country"><input id="pAge" class="input" type="number" placeholder="Age"></div><div class="grid2"><input id="pGoals" class="input" type="number" placeholder="Goals"><input id="pApps" class="input" type="number" placeholder="Appearances"></div><div class="grid2"><input id="pAssists" class="input" type="number" placeholder="Assists"><input id="pMedia" class="input" placeholder="Paste YouTube link"></div><div id="uploadBox" onclick="document.getElementById('fileIn').click()" style="border:2px dashed var(--border);background:var(--input);border-radius:14px;padding:16px;text-align:center;margin-bottom:12px;cursor:pointer"><b style="font-size:13px">Upload from Phone</b><br><span style="font-size:11px;color:#6B7280">Photo • Max 500px auto compressed</span><input type="file" id="fileIn" accept="image/*" style="display:none" onchange="handleFile(this)"></div><div id="previewBox" style="display:none;position:relative;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:16/10;margin-bottom:10px;border:1px solid var(--border)"><img id="preImg" style="display:none;width:100%;height:100%;object-fit:cover"><div onclick="clearPhoneFile()" style="position:absolute;top:8px;right:8px;background:#FF3B30;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer">✕</div></div><div style="display:flex;gap:10px;margin-top:12px"><button class="modalBtn modalBtnCancel" onclick="closePost()">Cancel</button><button class="modalBtn modalBtnMain" id="postBtn" onclick="submitPost()">Post</button></div></div></div>
+<div class="modalOverlay" id="profileModal" onclick="if(event.target===this) closeProfile()"><div class="modalCard"><div id="profileContent"></div></div></div>
+<div class="modalOverlay" id="imageModal" onclick="if(event.target===this) closeImage()"><div class="modalCard"><img id="fullImage" src=""><div onclick="closeImage()" style="position:absolute;top:14px;right:14px;background:rgba(0,0,0,.6);color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(255,255,255,.2)">✕</div></div></div>
+<div class="modalOverlay" id="commentModal" onclick="if(event.target===this) closeCommentModal()"><div class="modalCard" style="max-width:400px"><h3 style="font-weight:800;margin-bottom:12px;display:flex;justify-content:space-between"><span>Comments</span><span onclick="closeCommentModal()" style="cursor:pointer">✕</span></h3><div id="commentList" style="max-height:300px;overflow:auto;margin-bottom:12px"></div><div style="display:flex;gap:8px"><input id="commentInput" class="input" style="margin:0" placeholder="Write a comment..."><button class="modalBtn modalBtnMain" style="flex:0 0 70px" onclick="submitComment()">Send</button></div></div></div>
+<div class="modalOverlay" id="confirmModal" onclick="if(event.target===this) closeConfirm()"><div class="modalCard" style="text-align:center;max-width:340px"><div style="width:54px;height:54px;background:rgba(255,59,48,.12);border:1px solid rgba(255,59,48,.2);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px">🗑️</div><h3 style="font-weight:900;font-size:17px">Delete Talent?</h3><p style="font-size:12px;color:#8B8B9A;margin:8px 0 18px;line-height:1.5">This post will be permanently deleted. This action cannot be undone.</p><div style="display:flex;gap:10px"><button class="modalBtn modalBtnCancel" onclick="closeConfirm()">Cancel</button><button class="modalBtn modalBtnDanger" onclick="doConfirm()">Delete</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import { getFirestore, collection, onSnapshot, getDocs, addDoc, serverTimestamp, query, where, doc, getDoc, deleteDoc, updateDoc, increment, arrayUnion, arrayRemove, limit } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+const cfg={ apiKey:"AIzaSyCCP-e3OWAYdgilZ8w0M91MwbYu_BxgiYw", authDomain:"ball-link.firebaseapp.com", projectId:"ball-link", storageBucket:"ball-link.firebasestorage.app", messagingSenderId:"1012371224119", appId:"1:1012371224119:web:03f0bc00dd59da4fc131b2" };
+const app=initializeApp(cfg); const auth=getAuth(app); const db=getFirestore(app);
+let all=[],usersMap={},curUser=null,selectedBase64=null; let postsLoaded=false; let activeCommentPostId=null; let notifUnsub=null; let postsUnsub=null, usersUnsub=null;
+let pendingDeleteId=null;
+const ADMIN_EMAIL="dzakwamarkus616@gmail.com";
+const isAdminUser = ()=> curUser && curUser.email===ADMIN_EMAIL;
+function compressImage(file,maxW,quality){return new Promise((res,rej)=>{const r=new FileReader();r.onload=e=>{const img=new Image();img.onload=()=>{const c=document.createElement("canvas");let w=img.width,h=img.height;if(w>maxW){h*=maxW/w;w=maxW;}c.width=w;c.height=h;c.getContext("2d").drawImage(img,0,0,w,h);res(c.toDataURL("image/jpeg",quality));};img.onerror=rej;img.src=e.target.result;};r.onerror=rej;r.readAsDataURL(file);});}
+function getYouTubeId(url){try{if(!url) return null;if(url.includes('youtu.be/')) return url.split('youtu.be/')[1].split('?')[0].split('&')[0];const u=new URL(url);if(u.searchParams.get('v')) return u.searchParams.get('v');if(u.pathname.includes('/shorts/')) return u.pathname.split('/shorts/')[1].split('?')[0].split('/')[0];}catch(e){}return null;}
+function getInitials(name){if(!name) return 'P';const p=name.trim().split(/\s+/).filter(Boolean);if(p.length===1) return p[0].slice(0,2).toUpperCase();return (p[0][0]+(p[1][0]||'')).toUpperCase();}
+function hasRealPhoto(url){if(!url) return false;if(url.startsWith('data:')) return true;if(url.includes('ui-avatars.com')) return false;if(url.includes('pravatar.cc')) return false;if(url.startsWith('http')) return true;return false;}
+function avatarImgOrInitials(name, photoURL){if(hasRealPhoto(photoURL)){return `<img src="${photoURL}" loading="lazy">`;}else{return `<div class="avatarInitials">${getInitials(name)}</div>`;}}
+function isUserVerified(uid){const u=usersMap[uid];if(!u) return false;if(u.banned===true) return false;return u.verified === true;}
+function isUserBanned(uid){const u=usersMap[uid];return u && u.banned===true;}
+function listenPosts(){
+  if(postsUnsub) postsUnsub();
+  postsUnsub = onSnapshot(collection(db,"posts"),s=>{
+    all=[]; s.forEach(d=>all.push({id:d.id,...d.data()}));
+    all.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+    postsLoaded=true; render();
+  },err=>{console.error("posts error",err); postsLoaded=true; render();});
 }
+function listenUsers(){
+  if(usersUnsub) usersUnsub();
+  usersUnsub = onSnapshot(collection(db,"users"),s=>{
+    s.forEach(d=>{usersMap[d.id]=d.data();}); render();
+  },err=>{console.error("users error",err);});
+}
+onAuthStateChanged(auth,async u=>{
+  curUser=u;
+  if(!u){ location.href='login.html'; return; }
+  if(u.email===ADMIN_EMAIL){ const btn=document.getElementById('adminBtn'); if(btn) btn.classList.add('show'); }
+  try{
+    const snap=await getDoc(doc(db,"users",u.uid));
+    if(snap.exists()){
+      const data=snap.data();
+      if(data.banned===true && u.email!==ADMIN_EMAIL){alert('Banned');await signOut(auth);location.href='login.html';return;}
+      usersMap[u.uid]=data;
+      const scoutBtn=document.getElementById('scoutNavBtn');
+      if(scoutBtn){
+        if(u.email===ADMIN_EMAIL){
+          scoutBtn.style.display='flex';
+        }else if(data.role==='player'){
+          scoutBtn.style.display='none';
+        }else if(data.role==='scout'){
+          scoutBtn.style.display='flex';
+        }else{
+          scoutBtn.style.display='none';
+        }
+      }
+      if(data.role==='scout' && u.email!==ADMIN_EMAIL){
+        location.href='scout.html'; return;
+      }
+    }
+  }catch(e){}
+  listenPosts();
+  listenUsers();
+  const q=query(collection(db,"messages"), where("to","==",u.uid), where("read","==",false));
+  onSnapshot(q,snap=>{
+    const badge=document.getElementById('msgBadge');
+    if(!badge) return;
+    if(snap.size>0){badge.textContent=snap.size>9?'9+':snap.size;badge.classList.add('show');}
+    else badge.classList.remove('show');
+  },()=>{});
+  listenNotifs(u.uid);
+  render();
+});
+function toastMsg(t){const el=document.getElementById('toast');el.textContent=t;el.style.display='block';setTimeout(()=>el.style.display='none',3500);}
+window.doLogout=()=>document.getElementById('logoutModal').classList.add('show');
+window.hideLogout=()=>document.getElementById('logoutModal').classList.remove('show');
+window.confirmLogout=async()=>{const th=localStorage.getItem('balllink_theme');hideLogout();try{await signOut(auth);}catch(e){}localStorage.clear();if(th) localStorage.setItem('balllink_theme',th);toastMsg("Logged out");setTimeout(()=>location.href='login.html',700);};
+function listenNotifs(uid){
+  if(notifUnsub) notifUnsub();
+  const q = query(collection(db,"notifications"), where("toUid","==",uid), limit(50));
+  notifUnsub = onSnapshot(q, snap=>{
+    const badge=document.getElementById('notifBadge'); let unread=0; let items=[]; snap.forEach(d=>{items.push({id:d.id,...d.data()});}); items.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+    if(items.length===0){document.getElementById('notifList').innerHTML='<div style="padding:40px 20px;text-align:center;color:#666;font-size:12px">No notifications yet</div>';badge.classList.remove('show');return;}
+    let html=''; items.forEach(n=>{if(!n.read) unread++; const icon=n.type==='like'?'❤️':n.type==='comment'?'💬':'👁️'; html+=`<div class="notifItem ${!n.read?'unread':''}" onclick="handleNotifClick('${n.id}','${n.postId||''}')"><div class="notifIcon">${icon}</div><div class="notifText"><b>${n.title||'Someone'} ${n.type==='like'?'liked':n.type==='comment'?'commented':'viewed'}</b><span>${n.text||''}</span><div style="font-size:9px;color:#555;margin-top:3px">${n.createdAt?.seconds?timeAgo(n.createdAt.seconds*1000):'Just now'}</div></div></div>`;});
+    document.getElementById('notifList').innerHTML=html; if(unread>0){badge.textContent=unread>9?'9+':unread;badge.classList.add('show');}else badge.classList.remove('show');
+  });
+}
+function timeAgo(ts){const diff=Date.now()-ts;const m=Math.floor(diff/60000);if(m<1) return 'Just now';if(m<60) return m+'m ago';const h=Math.floor(m/60);if(h<24) return h+'h ago';const d=Math.floor(h/24);return d+'d ago';}
+async function createNotif(toUid, type, title, text, postId){if(!curUser || curUser.uid===toUid) return; try{await addDoc(collection(db,"notifications"),{toUid, fromUid:curUser.uid, type, title, text, postId:postId||null, read:false, createdAt:serverTimestamp()});}catch(e){}}
+window.openNotif=()=>{document.getElementById('notifModal').classList.add('show');}
+window.closeNotif=()=>{document.getElementById('notifModal').classList.remove('show');}
+window.handleNotifClick=async(id,postId)=>{try{await updateDoc(doc(db,"notifications",id),{read:true});}catch(e){}closeNotif();if(postId) openProfile(postId);}
+window.markAllRead=async()=>{if(!curUser) return; try{const q=query(collection(db,"notifications"), where("toUid","==",curUser.uid), where("read","==",false));const snap=await getDocs(q);snap.forEach(d=>{updateDoc(doc(db,"notifications",d.id),{read:true});});}catch(e){}}
+window.adminDeletePost=(id)=>{
+  if(!isAdminUser()){toastMsg("Not admin");return;}
+  pendingDeleteId=id;
+  document.getElementById('confirmModal').classList.add('show');
+};
+window.closeConfirm=()=>{
+  document.getElementById('confirmModal').classList.remove('show');
+  pendingDeleteId=null;
+};
+window.doConfirm=async()=>{
+  if(!pendingDeleteId) return;
+  const idToDelete=pendingDeleteId;
+  all = all.filter(p=>p.id!==idToDelete);
+  render();
+  closeConfirm();
+  toastMsg("Deleted ✓");
+  try{
+    await deleteDoc(doc(db,"posts",idToDelete));
+  }catch(e){
+    toastMsg(e.message);
+  }
+  pendingDeleteId=null;
+};
+window.handleFile=async(input)=>{const file=input.files[0];if(!file) return;if(file.size>8*1024*1024){toastMsg("Max 8MB");return;}if(file.type.startsWith('video')){toastMsg("Use YouTube link");return;}document.getElementById('pMedia').value="";const box=document.getElementById('previewBox');const img=document.getElementById('preImg');box.style.display='block';try{const comp=await compressImage(file,500,0.5);selectedBase64=comp;img.src=comp;img.style.display='block';toastMsg("Photo ready ✓ - "+Math.round(comp.length/1024)+"KB");}catch(e){toastMsg("Error compressing");}};
+window.clearPhoneFile=()=>{selectedBase64=null;document.getElementById('fileIn').value='';document.getElementById('previewBox').style.display='none';};
+window.openPost=async()=>{if(!curUser){toastMsg("Login first");return;}if(usersMap[curUser.uid]?.banned===true){toastMsg("Banned");return;}document.getElementById('postModal').classList.add('show');clearPhoneFile();try{let uData=usersMap[curUser.uid];if(!uData){const s=await getDoc(doc(db,"users",curUser.uid));if(s.exists()){uData=s.data();usersMap[curUser.uid]=uData;}}if(uData){document.getElementById('pName').value=uData.name||'';document.getElementById('pClub').value=uData.club||'';document.getElementById('pPos').value=uData.position||'';document.getElementById('pCountry').value=uData.country||'Nigeria';document.getElementById('pAge').value=uData.age||'';document.getElementById('pGoals').value=uData.goals??'';document.getElementById('pApps').value=uData.appearances??'';document.getElementById('pAssists').value=uData.assists??'';}}catch(e){}};
+window.closePost=()=>{document.getElementById('postModal').classList.remove('show');clearPhoneFile();};
+window.closeProfile=()=>{document.getElementById('profileModal').classList.remove('show');document.body.style.overflow='';};
+window.startChat=(uid,name,photo)=>{if(!curUser){toastMsg("Login first");return;}if(isUserBanned(uid)){toastMsg("Banned");return;}if(curUser.uid===uid){toastMsg("This is you");return;}closeProfile();location.href=`chat.html?with=${uid}&name=${encodeURIComponent(name)}&photo=${encodeURIComponent(photo)}`;};
+window.openProfile=(id)=>{const p=all.find(x=>x.id===id);if(!p) return;trackView(id);const u=usersMap[p.uid]||{};if(u.banned===true &&!isAdminUser()){toastMsg("Banned");return;}const name=u.name||p.name||'Player';const club=u.club||p.club||'Free Agent';const pos=u.position||p.position||'Striker';const country=u.country||p.country||'Nigeria';const age=u.age||p.age||19;const goals=p.goals??0;const apps=p.appearances??0;const assists=p.assists??0;const pot=p.potential??80;const profilePic=u.photoURL||'';let coverPhoto=(p.coverUrl||p.mediaUrl||'').trim()||profilePic;if(coverPhoto.includes('youtube.com')||coverPhoto.includes('youtu.be')){const yt=getYouTubeId(coverPhoto);if(yt) coverPhoto=`https://img.youtube.com/vi/${yt}/hqdefault.jpg`;}const safeName=name.replace(/'/g,"");const verified=isUserVerified(p.uid);
+const avatarHtml = hasRealPhoto(profilePic)? `<img src="${profilePic}" style="width:124px;height:124px;border-radius:32px;border:4px solid var(--card2);object-fit:cover">` : `<div style="width:124px;height:124px;border-radius:32px;border:4px solid var(--card2);background:linear-gradient(135deg,#1A1A2C,#232334);display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:900;color:#fff">${getInitials(name)}</div>`;
+document.getElementById('profileContent').innerHTML=`<div style="position:relative;background:var(--card2)"><div style="width:100%;height:220px;position:relative;overflow:hidden;background:#0E0E1A"><img src="${coverPhoto||profilePic}" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.65))"></div><div style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="closeProfile()">✕</div></div><div style="display:flex;flex-direction:column;align-items:center;margin-top:-64px;position:relative;z-index:2;padding:0 20px">${avatarHtml}<h2 style="font-size:24px;font-weight:900;color:var(--text);margin-top:14px;display:flex;align-items:center;gap:6px">${name}${verified?`<span class="verified">✓</span>`:''}</h2><div style="font-size:13px;font-weight:700;color:var(--muted);margin-top:6px">${pos} • ${club}</div><div style="font-size:12px;color:#6B7280;margin-top:2px">${country} • Age ${age}</div></div><div style="padding:22px 20px 20px"><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px"><div style="background:var(--input);padding:16px;border-radius:18px;text-align:center;border:1px solid var(--border)"><b style="font-size:20px;display:block;color:var(--text)">${goals}</b><span style="font-size:9px;color:#6B7280;font-weight:700">GOALS</span></div><div style="background:var(--input);padding:16px;border-radius:18px;text-align:center;border:1px solid var(--border)"><b style="font-size:20px;display:block;color:var(--text)">${apps}</b><span style="font-size:9px;color:#6B7280;font-weight:700">APPS</span></div><div style="background:var(--input);padding:16px;border-radius:18px;text-align:center;border:1px solid var(--border)"><b style="font-size:20px;display:block;color:var(--text)">${assists}</b><span style="font-size:9px;color:#6B7280;font-weight:700">ASSISTS</span></div></div><div style="display:flex;gap:12px;margin-top:16px"><button onclick="closeProfile()" style="flex:1;background:var(--input);color:var(--text);padding:16px;border-radius:14px;font-weight:700;border:1px solid var(--border)">Close</button></div></div></div>`;
+document.getElementById('profileModal').classList.add('show');document.body.style.overflow='hidden';};
+window.openImage=(id)=>{const p=all.find(x=>x.id===id);if(!p) return;trackView(id);let url=(p.mediaUrl||p.coverUrl||'').trim();if(!url) return;const yt=getYouTubeId(url);if(yt){window.open(`https://www.youtube.com/watch?v=${yt}`, '_blank');return;}document.getElementById('fullImage').src=url;document.getElementById('imageModal').classList.add('show');};
+window.closeImage=()=>{document.getElementById('imageModal').classList.remove('show');document.getElementById('fullImage').src='';};
+window.openVideo=(id)=>{const p=all.find(x=>x.id===id);if(!p) return;trackView(id);const url=(p.mediaUrl||'').trim();if(!url) return;const ytId=getYouTubeId(url);if(ytId){window.open(`https://www.youtube.com/watch?v=${ytId}`, '_blank');return;}};
+window.submitPost=async()=>{
+  if(!curUser){toastMsg("Login first");return;}
+  if(usersMap[curUser.uid]?.banned===true){toastMsg("Banned");return;}
+  const name=document.getElementById('pName').value.trim();if(!name){toastMsg("Enter name");return;}
+  const btn=document.getElementById('postBtn');btn.textContent='Posting...';btn.disabled=true;
+  let media=document.getElementById('pMedia').value.trim() || selectedBase64;
+  if(!media) media="https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=800";
+  if(media.length>900000){toastMsg("Photo too large");btn.textContent='Post';btn.disabled=false;return;}
+  try{
+    const ytId=getYouTubeId(media);
+    const data={uid:curUser.uid,name:name,club:document.getElementById('pClub').value||"Free Agent",position:document.getElementById('pPos').value||"Striker",country:document.getElementById('pCountry').value||"Nigeria",age:parseInt(document.getElementById('pAge').value)||19,goals:parseInt(document.getElementById('pGoals').value)||0,appearances:parseInt(document.getElementById('pApps').value)||0,assists:parseInt(document.getElementById('pAssists').value)||0,potential:80,mediaUrl:media,coverUrl:media,mediaType:ytId?'youtube':'image/jpeg',youtubeId:ytId||null,scoutViews:0,playerViews:0,likes:[],likesCount:0,commentsCount:0,createdAt:serverTimestamp()};
+    await addDoc(collection(db,"posts"),data);closePost();toastMsg("Posted ✓");
+  }catch(e){toastMsg("Failed: "+e.message);}
+  btn.textContent='Post';btn.disabled=false;
+};
+function renderSkeleton(){let h='';for(let i=0;i<3;i++){h+=`<div style="margin:8px 10px;border-radius:18px;padding:14px;border:1px solid var(--border);background:var(--card2)"><div style="display:flex;gap:10px"><div class="skeleton" style="width:54px;height:54px;border-radius:12px"></div><div style="flex:1"><div class="skeleton" style="height:12px;width:50%;margin-bottom:6px"></div><div class="skeleton" style="height:8px;width:30%"></div></div></div><div class="skeleton" style="height:140px;margin-top:12px;border-radius:12px"></div></div>`;}document.getElementById('feed').innerHTML=h;}
+async function trackView(postId){if(!curUser) return;const key=`viewed_${postId}_${curUser.uid}`;if(localStorage.getItem(key)) return;const post=all.find(p=>p.id===postId);if(post && post.uid===curUser.uid) return;try{const uData=usersMap[curUser.uid];const role=uData?.role||'player';const refDoc=doc(db,"posts",postId);if(role==='scout') await updateDoc(refDoc,{scoutViews:increment(1)});else await updateDoc(refDoc,{playerViews:increment(1)});localStorage.setItem(key,'1');if(post) createNotif(post.uid,'view', usersMap[curUser.uid]?.name||'A scout', `Viewed • ${post.position||'Player'}`, postId);}catch(e){}}
+window.toggleLike=async(id)=>{if(!curUser) return;const p=all.find(x=>x.id===id);if(!p) return;if(isUserBanned(p.uid)) return;const liked=(p.likes||[]).includes(curUser.uid);try{const refDoc=doc(db,"posts",id);if(liked){await updateDoc(refDoc,{likes:arrayRemove(curUser.uid),likesCount:increment(-1)});}else{await updateDoc(refDoc,{likes:arrayUnion(curUser.uid),likesCount:increment(1)});createNotif(p.uid,'like', usersMap[curUser.uid]?.name||'Someone', `Liked • ${p.position||'talent'}`, id);} }catch(e){}};
+window.openComments=async(id)=>{if(isUserBanned(all.find(x=>x.id===id)?.uid)) return;activeCommentPostId=id;document.getElementById('commentModal').classList.add('show');document.getElementById('commentList').innerHTML='<div style="text-align:center;color:#6B7280;padding:20px">Loading...</div>';try{onSnapshot(query(collection(db,"posts",id,"comments")),snap=>{const list=document.getElementById('commentList');if(snap.empty){list.innerHTML='<div style="text-align:center;color:#555;padding:20px">No comments</div>';return;}let html='';snap.forEach(d=>{const c=d.data();const u=usersMap[c.uid]||{}; html+=`<div style="display:flex;gap:8px;margin-bottom:12px"><div style="background:var(--input);border:1px solid var(--border);padding:8px 12px;border-radius:14px;flex:1"><b style="font-size:12px;display:block;color:var(--text)">${c.name||u.name||'User'} ${isUserVerified(c.uid)?'<span style="color:#1D9BF0">✓</span>':''}</b><span style="font-size:13px;color:var(--text)">${c.text}</span></div></div>`;});list.innerHTML=html;});}catch(e){}};
+window.closeCommentModal=()=>{document.getElementById('commentModal').classList.remove('show');activeCommentPostId=null;};
+window.submitComment=async()=>{const text=document.getElementById('commentInput').value.trim();if(!text||!activeCommentPostId||!curUser) return;if(usersMap[curUser.uid]?.banned===true) return;try{const uData=usersMap[curUser.uid]||{};const p=all.find(x=>x.id===activeCommentPostId);await addDoc(collection(db,"posts",activeCommentPostId,"comments"),{uid:curUser.uid,name:uData.name||'Player',photo:uData.photoURL||'',text:text,createdAt:serverTimestamp()});await updateDoc(doc(db,"posts",activeCommentPostId),{commentsCount:increment(1)});document.getElementById('commentInput').value='';if(p){createNotif(p.uid,'comment', uData.name||'Someone', `"${text.slice(0,40)}"`, activeCommentPostId);}}catch(e){}};
+function render(){
+  if(!postsLoaded){renderSkeleton();return;}
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  let f=all.filter(p=>{
+    const u=usersMap[p.uid]||{};
+    if(u.banned===true &&!isAdminUser()) return false;
+    const country=(p.country||u.country||'Nigeria').toLowerCase();
+    const pos=(p.position||u.position||'').toLowerCase();
+    const club=(p.club||u.club||'').toLowerCase();
+    const name=(p.name||u.name||'').toLowerCase();
+    if(q &&!(name.includes(q)||club.includes(q)||pos.includes(q)||country.includes(q))) return false;
+    return true;
+  });
+  if(f.length===0){document.getElementById('feed').innerHTML=`<div class="card" style="padding:36px;text-align:center;color:#6B7280">No posts yet<br><span style="font-size:11px">Be first to post! Tap + button</span></div>`;return;}
+  const showAdmin=isAdminUser();
+  document.getElementById('feed').innerHTML=f.map(p=>{
+    const u=usersMap[p.uid]||{};const name=u.name||p.name||'Player';const club=u.club||p.club||'Free Agent';const pos=u.position||p.position||'Striker';const country=u.country||p.country||'Nigeria';const age=u.age||p.age||19;const goals=p.goals??0;const apps=p.appearances??0;const assists=p.assists??0;let media=(p.mediaUrl||p.coverUrl||'').trim()||'https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=800';const avatar=u.photoURL||'';const scoutV=p.scoutViews||0;const playerV=p.playerViews||0;const likes=p.likesCount||0;const comments=p.commentsCount||0;const liked=curUser && (p.likes||[]).includes(curUser.uid);const verified=isUserVerified(p.uid);const tick=verified?`<span class="verified">✓</span>`:'';
+    const ytId=getYouTubeId(p.mediaUrl||'') || p.youtubeId;let thumb=media;const isYT=!!ytId;if(isYT){thumb=`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;}
+    const reelHtml = isYT? `<div class="reel" onclick="openVideo('${p.id}')"><img src="${thumb}" loading="lazy"><div class="play">▶</div><div class="reelLabel">PLAY VIDEO</div></div>` : `<div class="reel" onclick="openImage('${p.id}')"><img src="${media}" loading="lazy"><div class="reelLabel" style="background:rgba(0,0,0,.55)">VIEW PHOTO</div></div>`;
+    return `<div class="card">
+<div class="label"><span>POST • ${p.createdAt?new Date(p.createdAt.seconds*1000).toLocaleDateString():'Just now'}</span><button class="adminDel ${showAdmin?'show':''}" onclick="adminDeletePost('${p.id}')">DELETE</button></div>
+<div class="profileRow"><div class="avatar" onclick="openProfile('${p.id}')">${avatarImgOrInitials(name, avatar)}</div><div class="info"><div class="name" onclick="openProfile('${p.id}')">${name}${tick}</div><div style="height:1px;background:var(--border);margin:6px 0"></div><div style="display:flex;gap:4px;flex-wrap:wrap;font-size:10px;align-items:center"><span style="background:#00E676;color:#000;padding:2px 7px;border-radius:10px;font-size:8.5px;font-weight:800">${pos}</span><span style="color:#777;font-size:10px">${club}</span></div><div style="display:flex;gap:4px;margin-top:6px;font-size:10px"><b style="color:var(--text)">${country}</b><span style="color:#6B7280">• Age ${age}</span></div></div></div>
+<div class="stats"><div class="stat"><b>${goals}</b><span>Goals</span></div><div class="stat"><b>${apps}</b><span>Appearances</span></div><div class="stat"><b>${assists}</b><span>Assists</span></div></div>
+${reelHtml}
+<div class="viewsRow" style="display:flex;gap:10px;padding:8px 2px 0;font-size:8.5px;color:#666;font-weight:600;align-items:center"><span style="display:flex;align-items:center;gap:4px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg><b>${scoutV}</b> Scout</span><span style="margin:0 8px;color:#333">•</span><span style="display:flex;align-items:center;gap:4px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg><b>${playerV}</b> Player</span></div>
+
+<button class="proContact" onclick="startChat('${p.uid}','${name.replace(/'/g,"\\'")}','${(avatar||'').replace(/'/g,'')}')">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.7 7.4L3 21l2.1-5.3A8.5 8.5 0 1 1 21 11.5z"></path></svg>
+CONTACT PLAYER
+</button>
+
+<div class="actionRow"><button class="actionBtn ${liked?'active':''}" onclick="toggleLike('${p.id}')">👍 ${likes>0?likes:'Like'}</button><button class="actionBtn" onclick="openComments('${p.id}')">💬 ${comments>0?comments:'Comment'}</button></div>
+</div>`;
+  }).join('');
+}
+document.getElementById('search').oninput=render;
+document.getElementById('pMedia').addEventListener('input', function(){
+  const url=this.value.trim();const box=document.getElementById('previewBox');const img=document.getElementById('preImg');
+  if(!url){if(!selectedBase64) box.style.display='none';return;}
+  const ytId=getYouTubeId(url);box.style.display='block';
+  if(ytId){img.src=`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;img.style.display='block';selectedBase64=url;}
+  else if(url.startsWith('http') || url.startsWith('data:image')){img.src=url;img.style.display='block';selectedBase64=url;}
+  else{box.style.display='none';selectedBase64=null;}
+});
+window.toggleTheme=()=>{document.body.classList.toggle('light');localStorage.setItem('balllink_theme', document.body.classList.contains('light')?'light':'dark');}
+const savedTheme=localStorage.getItem('balllink_theme');if(savedTheme==='light') document.body.classList.add('light');
 </script>
 </body></html>
