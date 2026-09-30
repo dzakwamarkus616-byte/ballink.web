@@ -2,57 +2,42 @@
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>BallLink - Football Talent</title>
 <style>
-body{background:#0a0a0a;color:white;font-family:Arial;margin:0;padding-bottom:80px}
-.card{background:#1a1a1a;padding:20px;border-radius:14px;margin:12px}
-.btn{background:#00ff88;color:black;padding:12px;border-radius:10px;border:none;font-weight:bold;width:100%}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;justify-content:space-around;padding:12px 0;border-top:1px solid #222}
-.nav{color:gray;text-align:center;cursor:pointer}
-.nav.active{color:#00ff88}
-.page{display:none;padding:10px}.page.show{display:block}
+body{background:#0a0a14;color:white;font-family:Arial;margin:0;padding-bottom:80px}
+.header{padding:14px;background:#101021;display:flex;justify-content:space-between}
+.card{background:#151528;margin:12px;padding:15px;border-radius:16px}
+.btn{background:#00ff88;color:black;padding:12px;border:none;border-radius:10px;font-weight:bold;width:100%}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#101021;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #222}
+.nav{color:gray;text-align:center} .nav.active{color:#00ff88}
+.page{display:none}.page.show{display:block}
 </style></head><body>
-<h3 style="padding:15px">BALLLINK</h3>
-<p style="padding:0 15px;color:gray">Football Talent Platform</p>
 
-<!-- FEED PAGE = SCOUT PAGE -->
+<div class="header"><b>BALLLINK</b><span style="color:#00ff88">● Live</span></div>
+
 <div id="home" class="page show">
-<div class="card"><h3>Contact Us</h3><p>Chat directly on BallLink</p><button class="btn" onclick="openChat()">Contact</button></div>
-<div class="card"><b>Markus - Striker - 33 Goals</b><p>Nigeria - Biba FC</p><button class="btn" onclick="openChat()">📩 Contact</button></div>
+<div class="card"><h3>Markus dzakwa ✅</h3><p>Striker - 33 Goals - Biba FC</p><button class="btn">📩 Contact</button></div>
+<div class="card"><h3>Tomiwa ⚽</h3><p>Winger - Fulham - 12 Goals</p><button class="btn">📩 Contact</button></div>
 </div>
 
-<!-- CHAT PAGE -->
-<div id="chat" class="page">
-<div class="card"><h3>BallLink Chat</h3><p>How can we help?</p><input placeholder="Type your message..." style="width:100%;padding:10px;border-radius:8px;margin:10px 0"><button class="btn">Send</button></div>
-</div>
+<div id="msgs" class="page"><div class="card">💬 No messages yet</div></div>
 
-<!-- PROFILE PAGE - THIS WAS MISSING -->
-<div id="profile" class="page">
-<div class="card" style="text-align:center">
-<img src="https://via.placeholder.com/80" style="border-radius:50%">
-<h3>ADMIN Scout ✅</h3><p>FIFA Licensed</p>
-<p style="color:#00ff88;font-weight:bold">VERIFIED SCOUT</p>
-<button class="btn" style="margin-top:10px">Edit Profile</button>
-<button class="btn" style="margin-top:10px;background:#222;color:white">My Saved Players (5)</button>
-</div>
-</div>
+<div id="prof" class="page"><div class="card" style="text-align:center">
+<h3>ADMIN Scout ✅</h3><p>FIFA Scout - Nigeria</p><p style="color:#00ff88">VERIFIED SCOUT</p>
+<button class="btn">Edit Profile</button>
+</div></div>
 
-<!-- MESSAGES PAGE -->
-<div id="msg" class="page"><div class="card">Messages - No messages yet</div></div>
-
-<!-- BOTTOM NAV WITH PROFILE BUTTON NOW -->
 <div class="bottom">
-<div class="nav active" onclick="show('home',this)">🎯<br><small>Scout</small></div>
-<div class="nav" onclick="show('msg',this)">💬<br><small>Messages</small></div>
-<div class="nav" onclick="show('profile',this)">👤<br><small>Profile</small></div>
-<div class="nav" onclick="location.href='login.html'">↪️<br><small>Logout</small></div>
+<div class="nav active" onclick="openPage('home',this)">🎯<br><small>Scout</small></div>
+<div class="nav" onclick="openPage('msgs',this)">💬<br><small>Messages</small></div>
+<div class="nav" onclick="openPage('prof',this)">👤<br><small>Profile</small></div>
+<div class="nav" onclick="alert('Logged out')">↪️<br><small>Logout</small></div>
 </div>
 
 <script>
-function show(id,el){
+function openPage(id,el){
 document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
 document.getElementById(id).classList.add('show');
 document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));
 if(el) el.classList.add('active');
 }
-function openChat(){show('chat',null);document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'))}
 </script>
 </body></html>
